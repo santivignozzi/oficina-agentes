@@ -1,0 +1,140 @@
+@import "tailwindcss";
+
+/* El tema se decide con `data-theme` en <html>, que fija un script antes de pintar. */
+:root {
+  color-scheme: light;
+  --bg: #f7f0e5;
+  --surface: #fffdf8;
+  --surface-2: #f6eee1;
+  --surface-3: #ece2d2;
+  --ink: #2b2740;
+  --muted: #5f5b6b;
+  --line: #e4d9c7;
+  --line-strong: #cfc1ab;
+  --accent: #5048c8;
+  --accent-ink: #ffffff;
+  --accent-soft: #e8e6fb;
+  --good: #14785c;
+  --good-soft: #d9f1e7;
+  --warn: #8f5500;
+  --warn-soft: #ffecc4;
+  --bad: #b5361f;
+  --bad-soft: #fde2db;
+  --info: #1d62b8;
+  --info-soft: #dbeafb;
+  --shadow: 0 1px 2px rgb(59 51 80 / 0.08), 0 6px 18px rgb(59 51 80 / 0.07);
+  --stage-frame: #3b3350;
+  --stage-sky: #cfe6f2;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #16152a;
+  --surface: #211f38;
+  --surface-2: #2a2845;
+  --surface-3: #343155;
+  --ink: #f3effa;
+  --muted: #b7b2cb;
+  --line: #36335a;
+  --line-strong: #4b4774;
+  --accent: #a39cff;
+  --accent-ink: #1a1830;
+  --accent-soft: #35316a;
+  --good: #6fdcb8;
+  --good-soft: #1c4039;
+  --warn: #ffc56b;
+  --warn-soft: #473513;
+  --bad: #ff9c88;
+  --bad-soft: #4d2520;
+  --info: #8cc4ff;
+  --info-soft: #1e3858;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 22px rgb(0 0 0 / 0.28);
+  --stage-frame: #0e0d1d;
+  --stage-sky: #1d1f47;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --color-good: var(--good);
+  --color-good-soft: var(--good-soft);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --color-bad: var(--bad);
+  --color-bad-soft: var(--bad-soft);
+  --color-info: var(--info);
+  --color-info-soft: var(--info-soft);
+  --font-display: var(--font-fredoka), system-ui, sans-serif;
+  --font-sans: var(--font-figtree), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+  --shadow-card: var(--shadow);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+/* Aros de foco a mano: el del navegador no se ve sobre superficies de color. */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: var(--accent-soft);
+}
+
+.scroll-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--line-strong) transparent;
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+@keyframes pulse-dot {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.animate-rise {
+  animation: rise-in 220ms ease-out both;
+}
+
+.animate-pulse-dot {
+  animation: pulse-dot 1.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
